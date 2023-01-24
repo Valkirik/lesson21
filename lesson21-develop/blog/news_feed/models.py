@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class DateTimeMixin(models.Model):
+class DateTimeMixin:
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
 
-class Page(models.Model):
+class Page(models.Model, DateTimeMixin):
     title = models.CharField(max_length=150)
     discription = models.CharField(max_length=255)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
