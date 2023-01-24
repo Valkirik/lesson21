@@ -9,7 +9,7 @@ class DateTimeMixin(models.Model):
 
 
 class Page(models.Model):
-    title = models.CharField(max_lenghth=150)
+    title = models.CharField(max_length=150)
     discription = models.CharField(max_length=255)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     is_privat = models.BooleanField(default=False)
@@ -21,6 +21,6 @@ class Page(models.Model):
 
 
     class Meta:
-        vorbose_name = "Page"
-        vorbose_name_plural = "Pages"
+        verbose_name = "Page"
+        verbose_name_plural = "Pages"
         
