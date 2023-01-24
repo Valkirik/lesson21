@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class DateTimeMixin(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True) #нужно чтобы дополнительно могли \
-    # наследоваться (чтобы эти два поля забрать себе в модель
+    date_updated = models.DateTimeField(auto_now=True)
 
 
 class Page(models.Model):
@@ -16,11 +15,23 @@ class Page(models.Model):
 
 
     def __str__(self):
-        return f"{self.pk} - {self.title}" #pk тот же IDб только pk в больших вариантах может сработать
-
+        return f"{self.pk} - {self.title}"
 
 
     class Meta:
         verbose_name = "Page"
         verbose_name_plural = "Pages"
-        
+
+
+class Post(models.Model, DateTimeMixin):
+    name = models.CharField(max_length=100)
+    content = models.TimeField()
+    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f"{self.pk} - {self.name}"
+
+    class Meta:
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"
